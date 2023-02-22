@@ -12,3 +12,5 @@ function AppContainer() {
     </div>
   );
 }
+
+export default AppContainer;
