@@ -2,23 +2,36 @@ import React from 'react';
 import './FoodAdder.css';
 
 class FoodAdder extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {FoodList: []};
+    this.state = {
+      food: '',
+      calories: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
-  handleSubmit = () => {
 
-  } 
-    
+  handleChange = (e) => {
+    this.setState({
+   [e.target.name]: e.target.value
+ })
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState(); // сбрасываем состояние до значений по умолчанию
+    this.props.handleSubmit(this.state.food, this.state.calories);
+  }
+
   render() {
     return (
-    <form className="food-adder">
-      <input type="text" placeholder="Добавьте продукты" />
-      <button className="food-adder__submit"></button>
-    </form>
-  );
-  }  
+      <form className="food-adder" onSubmit={this.handleSubmit}>
+        <input name="food" value={this.state.food} type="text" required placeholder="Добавьте продукты" onChange={this.handleChange} />
+        <input name="calories" value={this.state.calories} type="number" required placeholder="Калории" onChange={this.handleChange} />
+        <button className="food-adder__submit"></button>
+      </form>
+    );
+  }
 }
 
 export default FoodAdder;
