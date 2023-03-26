@@ -6,6 +6,7 @@ import Tips from "./Tips";
 import Register from "./Register";
 import Login from "./Login";
 import NavBar from "./NavBar";
+import ProtectedRouteElement from "./ProtectedRoute";
 import "./styles/App.css";
 
 class App extends React.Component {
@@ -32,8 +33,24 @@ class App extends React.Component {
                 )
               }
             />
-            <Route path="/diary" element={<Diary />} />
-            <Route path="/tips" element={<Tips />} />
+            <Route
+              path="/diary"
+              element={
+                <ProtectedRouteElement
+                  element={Diary}
+                  loggedIn={this.state.loggedIn}
+                />
+              }
+            />
+            <Route
+              path="/tips"
+              element={
+                <ProtectedRouteElement
+                  element={Tips}
+                  loggedIn={this.state.loggedIn}
+                />
+              }
+            />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Routes>
