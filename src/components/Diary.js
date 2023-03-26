@@ -1,6 +1,6 @@
-import React from 'react';
-import './Diary.css';
-import FoodAdder from './FoodAdder';
+import React from "react";
+import "./styles/Diary.css";
+import FoodAdder from "./FoodAdder";
 
 function Diary() {
   return (

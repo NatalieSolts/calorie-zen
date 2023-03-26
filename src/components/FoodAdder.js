@@ -1,12 +1,12 @@
-import React from 'react';
-import './FoodAdder.css';
+import React from "react";
+import "./styles//FoodAdder.css";
 
 class FoodAdder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      food: '',
-      calories: ''
+      food: "",
+      calories: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,20 +14,34 @@ class FoodAdder extends React.Component {
 
   handleChange = (e) => {
     this.setState({
-   [e.target.name]: e.target.value
- })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState(); // сбрасываем состояние до значений по умолчанию
     this.props.handleSubmit(this.state.food, this.state.calories);
-  }
+  };
 
   render() {
     return (
       <form className="food-adder" onSubmit={this.handleSubmit}>
-        <input name="food" value={this.state.food} type="text" required placeholder="Добавьте продукты" onChange={this.handleChange} />
-        <input name="calories" value={this.state.calories} type="number" required placeholder="Калории" onChange={this.handleChange} />
+        <input
+          name="food"
+          value={this.state.food}
+          type="text"
+          required
+          placeholder="Добавьте продукты"
+          onChange={this.handleChange}
+        />
+        <input
+          name="calories"
+          value={this.state.calories}
+          type="number"
+          required
+          placeholder="Калории"
+          onChange={this.handleChange}
+        />
         <button className="food-adder__submit"></button>
       </form>
     );
