@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import * as auth from "../auth.js";
 import "./styles/Login.css";
 
 class Login extends React.Component {
