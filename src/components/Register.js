@@ -11,6 +11,7 @@ const Register = () => {
     confirmPassword: "",
     calGoal: "",
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {

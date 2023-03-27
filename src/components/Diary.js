@@ -1,20 +1,49 @@
 import React from "react";
-import "./styles/Diary.css";
 import FoodAdder from "./FoodAdder";
+import "./styles/Diary.css";
 
-function Diary() {
-  return (
-    <div className="diary">
-      <div className="calories">
-        <h2>Калории:</h2>
-        <ul className="calories__list">
-          <li>360</li>
-          <li>120</li>
-        </ul>
+class Diary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      foodList: [],
+      calorieTotal: 0,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit = (food, calories) => {
+    let calorieTotal = 0;
+    var newList = this.state.foodList.slice();
+    newList.push({ food, calories });
+    // получаем сумму калорий
+    newList.forEach((entry) => {
+      calorieTotal = calorieTotal + parseInt(entry.calories);
+    });
+    this.setState({
+      foodList: newList,
+      calorieTotal,
+    });
+  };
+  render() {
+    return (
+      <div className="diary">
+        <div className="calories">
+          <h2>Цель на день: {this.props.calGoal}</h2>
+          <h2>Калории: {this.state.calorieTotal}</h2>
+          <ul className="calories__list">
+            {this.state.foodList.map((food, i) => {
+              return (
+                <li key={i}>
+                  {food.food} - {food.calories}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <FoodAdder handleSubmit={this.handleSubmit} />
       </div>
-      <FoodAdder />
-    </div>
-  );
+    );
+  }
 }
 
 export default Diary;
